@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "components.bundle.css",
+  "sources": [
+    "../../App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n  import router from \"page\";\n  import Home from \"./Pages/Home.svelte\";\n  import Blog from \"./Pages/Blog.svelte\";\n  import SingleBlog from \"./Pages/SingleBlog.svelte\";\n\n  let page;\n  let params;\n\n  router(\"/\", () => (page = Home));\n  router(\"/blog\", () => (page = Blog));\n  router(\n    \"/blog/:id\",\n\n    // Before we set the component\n    (ctx, next) => {\n      params = ctx.params;\n      next();\n    },\n\n    // Finally set the component\n    () => (page = SingleBlog)\n  );\n  router.start();\n</script>\n\n<style lang=\"postcss\">main{width:35em;max-width:calc(100vw - 3em);margin:1.5em auto}main>h1{color:green}\n/*# sourceMappingURL=src/App.svelte.map */</style>\n\n<nav>\n  <a href=\"/\">Home</a>\n  <a href=\"/blog\">Blog</a>\n</nav>\n\n<main>\n <svelte:component this={page} params={params} />\n</main>\n"
+  ],
+  "names": [],
+  "mappings": "AA0BsB,mBAAI,CAAC,MAAM,IAAI,CAAC,UAAU,KAAK,KAAK,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,OAAO,KAAK,CAAC,IAAI,CAAC"
+}

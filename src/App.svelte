@@ -1,18 +1,45 @@
 <script>
-export let greeting = "Hello World!";
+  import router from "page";
+  import Home from "./Pages/Home.svelte";
+  import Blog from "./Pages/Blog.svelte";
+  import SingleBlog from "./Pages/SingleBlog.svelte";
+
+  let page;
+  let params;
+
+  router("/", () => (page = Home));
+  router("/blog", () => (page = Blog));
+  router(
+    "/blog/:id",
+
+    // Before we set the component
+    (ctx, next) => {
+      params = ctx.params;
+      next();
+    },
+
+    // Finally set the component
+    () => (page = SingleBlog)
+  );
+  router.start();
 </script>
 
 <style lang="postcss">
-main {
+  main {
     width: 35em;
     max-width: calc(100vw - 3em);
     margin: 1.5em auto;
     & > h1 {
-        color: green;
+      color: green;
     }
-}
+  }
 </style>
 
+<nav>
+  <a href="/">Home</a>
+  <a href="/blog">Blog</a>
+</nav>
+
 <main>
-    <h1>{greeting}</h1>
+ <svelte:component this={page} params={params} />
 </main>
