@@ -57,7 +57,7 @@
       "@sveltejs/svelte-virtual-list": "^3.0.1",
       "css-ripple-effect": "^1.0.5",
       "material-components-web": "^7.0.0",
-      "node-sass": "^4.14.1",
+      "node-sass": "^7.0.0",
       "page": "^1.11.6",
       "postcss-scss": "^2.1.1",
       "postcss-use": "^3.0.0",
